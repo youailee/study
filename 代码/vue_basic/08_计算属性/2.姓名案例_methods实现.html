@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>姓名案例_methods实现</title>
+		<!-- 引入Vue -->
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 准备好一个容器-->
+		<div id="root">
+			姓：<input type="text" v-model="firstName"> <br/><br/>
+			名：<input type="text" v-model="lastName"> <br/><br/>
+			全名：<span>{{fullName()}}</span>   
+			<!-- 事件语法函数小括号加不加都可以，插值语法要加小括号，不然页面显示的就是函数信息 -->
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示。
+
+		new Vue({
+			el:'#root',
+			data:{
+				firstName:'张',
+				lastName:'三'
+			},
+			methods: {
+				// data中的数据任何一个发生变化时，vue中的模板就会自动解析，而这个函数的返回值不知道会不会变化，所以每次都会重新执行一次，所以插值语法里面的方法都会重新调用
+				fullName(){
+					console.log('@---fullName')
+					return this.firstName + '-' + this.lastName
+				}
+			},
+		})
+	</script>
+</html>
